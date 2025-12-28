@@ -1,47 +1,47 @@
-# Estructura del Proyecto Flutter
+# Flutter Project Structure
 
-Este documento describe la organización del proyecto Flutter siguiendo una arquitectura limpia y modular.
+This document describes the organization of a Flutter project following a clean and modular architecture.
 
 ---
 
-## Estructura de Carpetas
+## Folder Structure
 
 ```plaintext
 lib/
-├── main.dart                   # Punto de entrada de la aplicación. Llama a runApp(AppBootstrap()).
+├── main.dart                   # Application entry point. Calls runApp(AppBootstrap()).
 │
-├── bootstrap/                  # Inicialización y configuración global
-│   ├── app_bootstrap.dart      # Inicialización general de la app (GetIt, HydratedBloc, servicios globales)
-│   ├── app_config.dart         # Configuración de endpoints, clientes, variables globales
-│   └── injection.dart          # Registro de dependencias por feature y dependencias globales
+├── bootstrap/                  # Initialization and global configuration
+│   ├── app_bootstrap.dart      # General app initialization (GetIt, HydratedBloc, global services)
+│   ├── app_config.dart         # Configuration for endpoints, clients, global variables
+│   └── injection.dart          # Dependency registration by feature and global dependencies
 │
-├── core/                       # Lógica y recursos reutilizables de la app
+├── core/                       # Reusable logic and resources across the app
 │   ├── network/
-│   │   ├── api_client.dart     #Cliente Base y uso de injección de dependencias para multiples APIs
+│   │   ├── api_client.dart     # Base client and dependency injection for multiple APIs
 │   │   ├── interceptors/
 │   ├── error/
-│   │   └── failure.dart                # Manejo de errores y fallos globales
-│   │   └── error_translations.dart     # Mapeo de errores a mensajes de usuario
+│   │   └── failure.dart                # Global error and failure handling
+│   │   └── error_translations.dart     # Maps errors to user-friendly messages
 │   ├── i18n/
 │   │   ├── localization.dart
-│   │   └── en.arb / es.arb     # Archivos de internacionalización y traducciones
+│   │   └── en.arb / es.arb     # Internationalization and translation files
 │   ├── themes/
 │   │   ├── app_colors.dart
 │   │   ├── app_text_styles.dart
-│   │   └── app_theme.dart      # Definición de colores, tipografía y theme global de la app
+│   │   └── app_theme.dart      # Defines colors, typography, and global app theme
 │   ├── services/
 │   │   ├── analytics_service.dart
 │   │   ├── notification_service.dart
 │   │   ├── push_service.dart
-│   │   └── crashlytics_service.dart # Servicios globales (analítica, notificaciones, crashlytics, etc.)
+│   │   └── crashlytics_service.dart # Global services (analytics, notifications, crashlytics, etc.)
 │   ├── repositories/
-│   │   └── user_repository.dart # Repositorios de datos compartidos
+│   │   └── user_repository.dart # Shared data repositories
 │   └── utils/
 │       ├── validators.dart
 │       ├── date_utils.dart
-│       └── logger.dart         # Funciones y utilidades generales
+│       └── logger.dart         # General helper functions and utilities
 │
-├── features/                   # Funcionalidades de la app, separadas por dominio
+├── features/                   # App functionalities, separated by domain
 │   ├── auth/
 │   │   ├── presentation/bloc/
 │   │   ├── presentation/pages/
@@ -55,30 +55,30 @@ lib/
 │       ├── data/models/
 │       └── domain/
 │
-├── shared/                     # Componentes, extensiones y constantes reutilizables
+├── shared/                     # Reusable components, extensions, and constants
 │   ├── widgets/
 │   ├── extensions/
 │   └── constants/
 │
-├── data/                       # Almacenamiento local y remoto de datos
+├── data/                       # Local and remote data storage
 │   ├── local/
 │   └── remote/
 │
-├── blocs/                      # Carpeta opcional para BLoCs globales o compartidos
+├── blocs/                      # Optional folder for global or shared BLoCs
 │
-├── utils/                      # Funciones utilitarias adicionales
+├── utils/                      # Additional utility functions
 │
-└── assets/                     # Recursos de la app: imágenes, fuentes, iconos, etc.
+└── assets/                     # App resources: images, fonts, icons, etc.
 ```
 
 ---
 
-## Notas
+## Notes
 
-- Cada **feature** tiene su propia estructura: `presentation`, `data`, `domain`.
-- `core` contiene todo lo reutilizable, incluyendo temas, servicios, utilidades y manejo de errores.
-- `bootstrap` centraliza la inicialización de la app y la inyección de dependencias.
-- `shared` guarda widgets, extensiones y constantes que pueden usarse en cualquier feature.
-- `data/local` y `data/remote` separan la lógica de persistencia local y comunicación con APIs.
+- Each **feature** has its own structure: `presentation`, `data`, `domain`.
+- `core` contains all reusable logic, including themes, services, utilities, and error handling.
+- `bootstrap` centralizes app initialization and dependency injection.
+- `shared` holds widgets, extensions, and constants that can be used by any feature.
+- `data/local` and `data/remote` separate local persistence logic from API communication.
 
 ---
