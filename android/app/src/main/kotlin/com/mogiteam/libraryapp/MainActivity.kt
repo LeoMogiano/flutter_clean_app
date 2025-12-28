@@ -1,4 +1,4 @@
-package com.mogiteam.libraryapp.my_app
+package com.mogiteam.libraryapp
 
 import io.flutter.embedding.android.FlutterActivity
 

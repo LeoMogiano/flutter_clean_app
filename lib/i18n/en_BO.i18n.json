@@ -1,0 +1,12 @@
+{
+  "appTitle": "My Flutter App",
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "button": "Sign In"
+  },
+  "home": {
+    "welcome": "Welcome, {name}!"
+  }
+}
