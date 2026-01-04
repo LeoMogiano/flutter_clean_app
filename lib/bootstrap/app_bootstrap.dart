@@ -8,14 +8,22 @@ import 'package:flutter/services.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:my_app/bootstrap/app_config.dart';
 import 'package:my_app/bootstrap/injection.dart';
+import 'package:my_app/core/services/bloc_observer.dart';
 import 'package:my_app/i18n/strings.g.dart';
 import 'package:path_provider/path_provider.dart';
 
 Future<void> bootstrap(Widget Function() builder) async {
   const tag = 'BOOT';
   dev.log('⚙️ Bootstrapping app', name: tag);
+
+  assert(() {
+    Bloc.observer = AppBlocObserver();
+    return true;
+  }(), 'Setting BlocObserver for debugging');
+
   await AppConfig.load();
   await injection();
+
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory((await getApplicationSupportDirectory()).path),
   );
